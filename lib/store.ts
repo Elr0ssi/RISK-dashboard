@@ -4,7 +4,8 @@ import { create } from 'zustand';
 import type { Category, Period } from '@/lib/data-service';
 import { subcategoryMap } from '@/lib/data-service';
 
-export type MapView = 'dark' | 'satellite' | 'terrain';
+export type MapView = 'dark' | 'light' | 'terrain' | 'satellite';
+export type ThemeMode = 'dark' | 'light';
 
 interface DashboardState {
   selectedCategory: Category;
@@ -12,10 +13,12 @@ interface DashboardState {
   selectedPeriod: Period;
   selectedCountryIso3: string | null;
   mapView: MapView;
+  theme: ThemeMode;
   setCategory: (value: Category) => void;
   setSubcategory: (value: string) => void;
   setPeriod: (value: Period) => void;
   setMapView: (value: MapView) => void;
+  setTheme: (value: ThemeMode) => void;
   setSelectedCountryIso3: (value: string | null) => void;
 }
 
@@ -25,9 +28,11 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   selectedPeriod: 'real-time',
   selectedCountryIso3: null,
   mapView: 'dark',
+  theme: 'dark',
   setCategory: (value) => set({ selectedCategory: value, selectedSubcategory: subcategoryMap[value][0] }),
   setSubcategory: (value) => set({ selectedSubcategory: value }),
   setPeriod: (value) => set({ selectedPeriod: value }),
   setMapView: (value) => set({ mapView: value }),
+  setTheme: (value) => set({ theme: value, mapView: value === 'dark' ? 'dark' : 'light' }),
   setSelectedCountryIso3: (value) => set({ selectedCountryIso3: value })
 }));
