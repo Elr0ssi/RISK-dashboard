@@ -1,0 +1,42 @@
+{
+  "FRA": {
+    "name": "France",
+    "economy": { "gdp": 3040000000000, "inflation": 2.8, "debt": 111.2 },
+    "geopolitics": { "conflicts": 1.2, "alliances": 8.6, "risks": 3.4, "events": ["Accord UE sur la défense", "Négociations agricoles"], "impact": "Pression modérée sur l'euro et l'énergie." },
+    "science": { "innovation": 82, "ai": 76, "research": 88 },
+    "environment": { "co2": 4.7, "climateRisk": 3.1, "biodiversity": 6.9 },
+    "energy": { "oilDependency": 42, "renewables": 48, "gridStress": 2.3 }
+  },
+  "USA": {
+    "name": "United States",
+    "economy": { "gdp": 29000000000000, "inflation": 3.1, "debt": 121.0 },
+    "geopolitics": { "conflicts": 2.7, "alliances": 9.1, "risks": 4.2, "events": ["Sanctions update", "Pacific security exercise"], "impact": "Volatilité possible sur actions et matières premières." },
+    "science": { "innovation": 94, "ai": 95, "research": 92 },
+    "environment": { "co2": 14.8, "climateRisk": 4.4, "biodiversity": 5.6 },
+    "energy": { "oilDependency": 64, "renewables": 22, "gridStress": 3.8 }
+  },
+  "CHN": {
+    "name": "China",
+    "economy": { "gdp": 18500000000000, "inflation": 1.4, "debt": 84.1 },
+    "geopolitics": { "conflicts": 3.8, "alliances": 7.2, "risks": 6.1, "events": ["Industrial policy revision", "Maritime tension"], "impact": "Effet notable sur chaînes logistiques et semi-conducteurs." },
+    "science": { "innovation": 90, "ai": 91, "research": 89 },
+    "environment": { "co2": 8.0, "climateRisk": 5.2, "biodiversity": 5.0 },
+    "energy": { "oilDependency": 73, "renewables": 31, "gridStress": 4.9 }
+  },
+  "BRA": {
+    "name": "Brazil",
+    "economy": { "gdp": 2300000000000, "inflation": 4.5, "debt": 88.5 },
+    "geopolitics": { "conflicts": 1.7, "alliances": 6.1, "risks": 4.0, "events": ["Regional trade initiative", "Forest policy debate"], "impact": "Impact potentiel sur agriculture et métaux." },
+    "science": { "innovation": 63, "ai": 58, "research": 61 },
+    "environment": { "co2": 2.1, "climateRisk": 6.3, "biodiversity": 8.8 },
+    "energy": { "oilDependency": 36, "renewables": 49, "gridStress": 3.0 }
+  },
+  "IND": {
+    "name": "India",
+    "economy": { "gdp": 4200000000000, "inflation": 5.2, "debt": 82.0 },
+    "geopolitics": { "conflicts": 2.9, "alliances": 7.0, "risks": 5.3, "events": ["Tech export incentives", "Border talks"], "impact": "Sensibilité des marchés tech et énergie." },
+    "science": { "innovation": 74, "ai": 80, "research": 72 },
+    "environment": { "co2": 2.0, "climateRisk": 6.8, "biodiversity": 6.2 },
+    "energy": { "oilDependency": 79, "renewables": 26, "gridStress": 5.1 }
+  }
+}

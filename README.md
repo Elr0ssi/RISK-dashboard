@@ -1,51 +1,51 @@
-# Global Risk Monitoring Dashboard
+# Global Risk Intelligence Map (MVP)
 
-Production-ready Next.js (App Router) dashboard for monitoring global risk events across climate, geopolitical, cyber, health, and economic domains.
+Application Next.js + Leaflet + Tailwind qui affiche une carte du monde interactive avec filtres (catégorie, sous-catégorie dynamique, période), heatmap par pays et panneau d'information détaillé.
 
-## Features
+## Stack
 
-- Next.js App Router with serverless API route handlers (`/app/api/*`)
-- Vercel-ready architecture (no custom server required)
-- Supabase integration with mock-data fallback
-- Interactive Leaflet world map with event markers
-- Recharts risk trend visualization
-- Zustand-powered client-side filters
-- TailwindCSS-based responsive UI
-- Dynamic imports for heavy visualization components
+- Next.js (App Router) + React + TypeScript
+- Leaflet / React-Leaflet
+- Tailwind CSS
+- Zustand (état UI)
+- Données simulées locales (`data/world-data.json`)
 
-## Tech Stack
+## Fonctionnalités
 
-- Next.js 15 + React 19 + TypeScript
-- TailwindCSS
-- Recharts
-- React-Leaflet / Leaflet
-- Zustand
-- Supabase JS client
+- Carte monde interactive avec hover, clic et sélection de pays
+- Heatmap pays selon métrique choisie
+- Tooltip au survol (nom + valeur)
+- Filtres:
+  - Catégorie: économie, géopolitique, science, environnement, énergie
+  - Sous-catégorie dynamique
+  - Période: temps réel, 1 mois, 1 an
+- Légende dynamique gradient
+- Info panel sous la carte (cards modernes + icônes + impact potentiel)
+- Zoom automatique sur le pays sélectionné
+- Design dark avec accent `#78c8a3`
 
-## Run locally
+## Lancer en local
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build for production
+Puis ouvrir `http://localhost:3000`.
+
+## Vérifications
 
 ```bash
+npx tsc --noEmit
 npm run build
 ```
 
-## Deploy on Vercel
+## Déploiement sur Vercel
 
-1. Push this repository to GitHub/GitLab/Bitbucket.
-2. Import into Vercel.
-3. Add env vars from `.env.example` (optional; app uses mock data if omitted).
-4. Deploy.
+1. Pousser le repo sur GitHub/GitLab/Bitbucket.
+2. Importer le projet dans Vercel.
+3. Build command: `npm run build`.
+4. Output: configuration Next.js automatique.
+5. Déployer.
 
-## Optional Supabase schema
-
-Create tables:
-
-- `risk_events` with columns matching `data/mock-risks.ts` `RiskEvent`
-- `risk_trends` with columns: `day (text)`, `riskIndex (int)`, `sortOrder (int)`
-
+Aucune variable d'environnement n'est requise pour le MVP mock data.

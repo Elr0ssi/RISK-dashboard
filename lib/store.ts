@@ -1,18 +1,33 @@
 'use client';
 
 import { create } from 'zustand';
-import type { RiskLevel } from '@/data/mock-risks';
+import type { Category, Period } from '@/lib/data-service';
+import { subcategoryMap } from '@/lib/data-service';
+
+export type MapView = 'dark' | 'satellite' | 'terrain';
 
 interface DashboardState {
-  minScore: number;
-  selectedSeverity: RiskLevel | 'All';
-  setMinScore: (value: number) => void;
-  setSelectedSeverity: (value: RiskLevel | 'All') => void;
+  selectedCategory: Category;
+  selectedSubcategory: string;
+  selectedPeriod: Period;
+  selectedCountryIso3: string | null;
+  mapView: MapView;
+  setCategory: (value: Category) => void;
+  setSubcategory: (value: string) => void;
+  setPeriod: (value: Period) => void;
+  setMapView: (value: MapView) => void;
+  setSelectedCountryIso3: (value: string | null) => void;
 }
 
 export const useDashboardStore = create<DashboardState>((set) => ({
-  minScore: 0,
-  selectedSeverity: 'All',
-  setMinScore: (value) => set({ minScore: value }),
-  setSelectedSeverity: (value) => set({ selectedSeverity: value })
+  selectedCategory: 'economy',
+  selectedSubcategory: subcategoryMap.economy[0],
+  selectedPeriod: 'real-time',
+  selectedCountryIso3: null,
+  mapView: 'dark',
+  setCategory: (value) => set({ selectedCategory: value, selectedSubcategory: subcategoryMap[value][0] }),
+  setSubcategory: (value) => set({ selectedSubcategory: value }),
+  setPeriod: (value) => set({ selectedPeriod: value }),
+  setMapView: (value) => set({ mapView: value }),
+  setSelectedCountryIso3: (value) => set({ selectedCountryIso3: value })
 }));
