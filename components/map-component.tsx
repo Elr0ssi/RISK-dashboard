@@ -18,8 +18,8 @@ const mapTiles = {
 function colorForValue(value: number | null, min: number, max: number) {
   if (value === null) return 'transparent';
   const ratio = Math.max(0, Math.min(1, (value - min) / (max - min || 1)));
-  const start = [18, 42, 34];
-  const end = [132, 255, 194];
+  const start = [38, 84, 72];
+  const end = [120, 255, 205];
   const rgb = start.map((s, i) => Math.round(s + (end[i] - s) * ratio));
   return `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]})`;
 }
@@ -43,12 +43,13 @@ export function MapComponent() {
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json').then((res) => res.json()).then((data) => setGeojson(data));
   }, []);
 
-  const bounds = useMemo(() => getMetricBounds(category, subcategory, period), [category, subcategory, period]);
+  const isoCodes = useMemo(() => (geojson?.features ?? []).map((f) => String(f.id)), [geojson]);
+  const bounds = useMemo(() => getMetricBounds(isoCodes, category, subcategory, period), [isoCodes, category, subcategory, period]);
   const showHeatmap = zoom <= 4.6;
 
   return (
-    <section className="mx-auto w-full max-w-5xl overflow-hidden rounded-xl border border-risk-border bg-risk-panel">
-      <div className="h-[52vh] min-h-[340px] w-full">
+    <section className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-cyan-900/70 bg-[#040913] shadow-[0_0_40px_rgba(6,182,212,0.12)]">
+      <div className="h-[56vh] min-h-[380px] w-full">
         <MapContainer center={[20, 0]} zoom={2} className="h-full w-full" zoomControl>
           <ZoomTracker onZoom={setZoom} />
           <TileLayer url={mapTiles[mapView]} attribution="&copy; OpenStreetMap / Esri" />
@@ -61,16 +62,16 @@ export function MapComponent() {
                 return {
                   fillColor: showHeatmap ? colorForValue(value, bounds.min, bounds.max) : 'transparent',
                   weight: selectedCountryIso3 === iso3 ? 1.6 : 0.8,
-                  color: selectedCountryIso3 === iso3 ? '#78c8a3' : '#64748b',
-                  fillOpacity: showHeatmap ? 0.72 : 0
+                  color: selectedCountryIso3 === iso3 ? '#2dd4bf' : '#3b82f6',
+                  fillOpacity: showHeatmap ? 0.68 : 0
                 };
               }}
               onEachFeature={(feature, layer: Layer) => {
                 const iso3 = feature.id as string;
                 const value = getMetricValue(iso3, category, subcategory, period);
                 layer.on({
-                  mouseover: () => (layer as L.Path).setStyle({ weight: 1.3, color: '#a7f3d0' }),
-                  mouseout: () => (layer as L.Path).setStyle({ weight: selectedCountryIso3 === iso3 ? 1.6 : 0.8, color: selectedCountryIso3 === iso3 ? '#78c8a3' : '#64748b' }),
+                  mouseover: () => (layer as L.Path).setStyle({ weight: 1.4, color: '#5eead4' }),
+                  mouseout: () => (layer as L.Path).setStyle({ weight: selectedCountryIso3 === iso3 ? 1.6 : 0.8, color: selectedCountryIso3 === iso3 ? '#2dd4bf' : '#3b82f6' }),
                   click: () => setSelectedCountryIso3(iso3)
                 });
                 layer.bindTooltip(`<strong>${feature.properties?.name ?? iso3}</strong><br/>${subcategory}: ${value ?? 'N/A'}`);
