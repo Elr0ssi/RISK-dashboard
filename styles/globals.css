@@ -14,3 +14,9 @@ body {
   min-height: 100vh;
   background-image: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 35%);
 }
+
+.leaflet-container:focus,
+.leaflet-container:focus-visible,
+.leaflet-interactive:focus {
+  outline: none !important;
+}

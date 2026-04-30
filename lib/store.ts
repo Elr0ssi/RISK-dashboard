@@ -4,7 +4,7 @@ import { create } from 'zustand';
 import type { Category, Period } from '@/lib/data-service';
 import { subcategoryMap } from '@/lib/data-service';
 
-export type MapView = 'dark' | 'light' | 'terrain' | 'satellite';
+export type MapView = 'light' | 'terrain' | 'satellite';
 export type ThemeMode = 'dark' | 'light';
 
 interface DashboardState {
@@ -27,12 +27,12 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   selectedSubcategory: subcategoryMap.economy[0],
   selectedPeriod: 'real-time',
   selectedCountryIso3: null,
-  mapView: 'dark',
+  mapView: 'light',
   theme: 'dark',
   setCategory: (value) => set({ selectedCategory: value, selectedSubcategory: subcategoryMap[value][0] }),
   setSubcategory: (value) => set({ selectedSubcategory: value }),
   setPeriod: (value) => set({ selectedPeriod: value }),
   setMapView: (value) => set({ mapView: value }),
-  setTheme: (value) => set({ theme: value, mapView: value === 'dark' ? 'dark' : 'light' }),
+  setTheme: (value) => set({ theme: value, mapView: 'light' }),
   setSelectedCountryIso3: (value) => set({ selectedCountryIso3: value })
 }));
